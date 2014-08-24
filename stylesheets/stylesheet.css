@@ -424,11 +424,26 @@ Small Device Styles
 
 
 /* Custom */
-.directory:before {
+ul.project-tree {
+	margin-left: 40px;
+}
+
+.project-tree li {
+	list-style: none;
+}
+
+.project-tree li:before {
+  content: ">>";
+  margin-left: -37px;
+  margin-right: 5px;
+  line-height: 16px;
+}
+
+.project-tree .directory:before {
   content: "~";
 }
 
-.package:before {
+.project-tree .package:before {
   content: "#";
 }
 
@@ -458,7 +473,6 @@ Small Device Styles
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
-	font-size: 14px;
 	padding: 7px;
 	color: #212121;
 	border: 2px dotted #000000;
