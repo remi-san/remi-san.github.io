@@ -276,13 +276,16 @@ a {
 
 .file-description {
 	display: none;
-	background-color: #ffffff;
+}
+
+.file-description, .project-description {
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
-	font-size: 12px;
-	padding: 5px;
-	color: #000000;
+	font-size: 14px;
+	padding: 7px;
+	color: #b5e853;
+	border: 2px dotted #ffffff;
 }
 
 .warning {
@@ -291,4 +294,10 @@ a {
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 	padding: 5px;
+}
+
+.github-repo {
+	position: absolute;
+	margin-left: 400px;
+	margin-top: -90px;
 }
