@@ -78,7 +78,7 @@ h2 {
 }
 
 h3 {
-  font-size: 24px;
+  font-size: 28px;
 }
 
 h4 {
@@ -447,6 +447,11 @@ ul.project-tree {
   content: "#";
 }
 
+.project-name {
+  color: #000000;
+  font-size: 20px;
+}
+
 .package-name, .directory-name {
   font-weight: bold;
   color: #007edf;
@@ -474,8 +479,11 @@ ul.project-tree {
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 	padding: 7px;
-	color: #212121;
-	border: 2px dotted #000000;
+	color: #ffffff;
+	font-style: italic;
+	border: 2px dotted #dddddd;
+	background-color: #333333;
+	margin-bottom: 15px;
 }
 
 .warning {
