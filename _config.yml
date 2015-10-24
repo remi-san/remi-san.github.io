@@ -13,4 +13,4 @@ github_username:  remi-san
 # Build settings
 markdown: kramdown
 
-permalink:   /title.html
+permalink:   /:title.html
