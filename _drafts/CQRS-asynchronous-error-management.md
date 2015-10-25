@@ -8,13 +8,13 @@ keywords: CQRS, Async, Exceptions, Events, Domain
 ---
 So, I've got a design problem.
 
-I've got an aggregate that throws domain exceptions when *valid* commands break invariants. Yes, it can happen (because of an UI out of sync when a command is sent for example).
+I've got an aggregate that throws domain exceptions when **valid** commands break invariants. Yes, it can happen (because of an UI out of sync when a command is sent for example).
 
 Problem is, if my handler is asynchronous, the command would just be rejected (as it should), but I have no way to warn the user who issued the failing command. And **I WANT** him to be notified if it fails.
 
-Of course, the easy way would be to say "If you really need your user to be notified right away, juste make your handler synchronous and you won't have a problem anymore"... well, that's true, but let's pretend that, for various reasons, **I NEED** it to be asynchronous.
+Of course, the easy way would be to say "If you really need your user to be notified right away, just make your handler synchronous and you won't have a problem anymore"... well, that's true, but let's pretend that, for various reasons, **I NEED** it to be asynchronous.
 
-So I've looked it up on google and found some interesting stuff about it. First, there's this [question asked](https://groups.google.com/forum/#!topic/dddcqrs/Qd5afPyX6e8), and especially some of the answers which lead me to this [article](http://thinkbeforecoding.com/post/2009/12/10/Business-Errors-are-Just-Ordinary-Events), and bottom-line is *"Why bother and don't treat error cases like just any other event?"*.
+So I've looked it up on *Google* and found some interesting stuff about it. First, there's this [question asked](https://groups.google.com/forum/#!topic/dddcqrs/Qd5afPyX6e8), and especially some of the answers which lead me to this [article](http://thinkbeforecoding.com/post/2009/12/10/Business-Errors-are-Just-Ordinary-Events), and bottom-line is *"Why bother and don't treat error cases like just any other event?"*.
 
 And yeah, why the fuck not? It sure is pretty tempting.
 
@@ -28,7 +28,7 @@ Of course, I'll try to do it the other way, but what would this other way could 
 
 So what if you could have exceptions (which would interrupt your command) **AND** domain error events? How great would it be?
 
-So, to sum it up the situation, we've got our command handler which will get the aggregate through its repository, make the domain action described by the command, and finally, the repository saving the modified aggregate and emitting the events outside through its embedded event bus. And, around it, of course, our exception management structure.
+So, to sum up the situation, we've got our command handler which will get the aggregate through its repository, make the domain action described by the command, and finally, the repository saving the modified aggregate and emitting the events outside (through its _embedded_ event bus). And, around it, of course, our exception management structure.
 
 {% highlight PHP linenos %}
 <?php
