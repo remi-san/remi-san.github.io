@@ -30,30 +30,36 @@ So what if you could have exceptions (which would interrupt your command) **AND*
 
 So, to sum it up the situation, we've got our command handler which will get the aggregate through its repository, make the domain action described by the command, and finally, the repository saving the modified aggregate and emitting the events outside through its embedded event bus. And, around it, of course, our exception management structure.
 
-    public function handleFooCommand(FooCommand $command)
-    {
-        try {
-            $domainObject = $this->domainObjectRepository->load($command->getAggregateId());
-            $domainObject->foo(); // throws the domain exception
-            $this->domainObjectRepository->save($domainObject); // saves the aggregate and emits the events
-        } catch (DomainException $e) {
-            // handle domain exception and notify the world
-        } catch (Exception $e) {
-            // handle exception (and notify the world?)
-        }
+{% highlight PHP linenos %}
+<?php
+public function handleFooCommand(FooCommand $command)
+{
+    try {
+        $domainObject = $this->domainObjectRepository->load($command->getAggregateId());
+        $domainObject->foo(); // throws the domain exception
+        $this->domainObjectRepository->save($domainObject); // saves the aggregate and emits the events
+    } catch (DomainException $e) {
+        // handle domain exception and notify the world
+    } catch (Exception $e) {
+        // handle exception (and notify the world?)
     }
+}
+{% endhighlight %}
 
 Given that, if we want to notify the outside world the command failed, as the save method of the repository wasn't reached, we'll have to emit the "error" event here. Doing so, you will be emitting events from two different layers, and that's something you don't really want to do either.
 
-    public function handleFooCommand(FooCommand $command)
-    {
-        try {
-            ...
-        } catch (DomainException $e) {
-            $this->eventBus->emit(new DomainErrorEvent(...));
-        } catch (Exception $e) {
-            ...
-        }
+{% highlight PHP linenos %}
+<?php
+public function handleFooCommand(FooCommand $command)
+{
+    try {
+        ...
+    } catch (DomainException $e) {
+        $this->eventBus->emit(new DomainErrorEvent(...));
+    } catch (Exception $e) {
+        ...
     }
+}
+{% endhighlight %}
 
 So, what would the solution be?
