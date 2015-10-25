@@ -4,7 +4,7 @@ author: Rémi San
 email: remi.san@gmail.com
 tags: [ "DDD", "PHP", "OOP" ]
 description: >
-  A blog about tech discoveries, especially in DDD, CQRS and Event-Sourcing
+  A blog about tech discoveries, especially about DDD, CQRS and Event-Sourcing
 baseurl: ""
 url: "http://remi-san.github.io" # the base hostname & protocol for your site
 twitter_username: RemiSan
