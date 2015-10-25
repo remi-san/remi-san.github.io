@@ -3,8 +3,8 @@ layout: post
 title: "CQRS Asynchronous Error Management"
 date: 2015-10-30 12:00:00
 categories: CQRS
-excerpt: >
-  How do you warn your user when a command failed when your command handler is async?
+excerpt: How do you warn your user when a command failed when your command handler is async?
+keywords: CQRS, Async, Exceptions, Events, Domain
 ---
 So, I've got a design problem.
 
