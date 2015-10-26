@@ -55,7 +55,7 @@ public function handleFooCommand(FooCommand $command)
     } catch (DomainException $e) {
         $this->eventBus->emit(new DomainErrorEvent(...));
     } catch (Exception $e) {
-        ... // log and fix bug
+        ... // log (must be able to fix bug if it happens)
     }
 }
 {% endhighlight %}
@@ -125,7 +125,7 @@ public function handleFooCommand(FooCommand $command)
             $this->domainAggregateRepository->save($domainAggregate); // else saves the aggregate and emits the events
         }
     } catch (Exception $e) {
-        ... // log and fix bug
+        ... // log (must be able to fix bug if it happens)
     }
 }
 {% endhighlight %}
@@ -182,7 +182,7 @@ public function handleFooCommand(FooCommand $command)
         $domainAggregate->foo($command->getBar()); // throws the domain exception
         $this->domainAggregateRepository->save($domainAggregate); // will save the aggregate and dispatch the events (no more funny stuff here)
     } catch (Exception $e) {
-        ... // log and fix bug
+        ... // log (must be able to fix bug if it happens)
     }
 }
 {% endhighlight %}
