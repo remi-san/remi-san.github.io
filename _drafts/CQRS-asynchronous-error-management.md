@@ -183,11 +183,12 @@ public function handleFooCommand(FooCommand $command)
         $this->domainAggregateRepository->save($domainAggregate); // will save the aggregate and dispatch the events (no more funny stuff here)
     } catch (Exception $e) {
         ... // log (must be able to fix bug if it happens)
+        $throw $e; // or don't, it's up to you
     }
 }
 {% endhighlight %}
 
-And that's it! Everything should work just fine now. You've got your *error (which isn't one)* case handled and you can warn your user. Hooray! Design problem solved.
+And that's it! Everything should work just fine now. You've got your *error (which isn't one)* case handled, no invariants can be broken, and you can warn your user. Hooray! Design problem solved.
 
 And remember boys and girls, if it walks like a duck, swims like a duck and quacks like a duck, not only you're right to call it a duck, but stop trying to call it something else and stop being stubborn like me.
 
