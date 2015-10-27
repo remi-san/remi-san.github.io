@@ -60,7 +60,7 @@ public function handleFooCommand(FooCommand $command)
 }
 {% endhighlight %}
 
-Sadly, doing so, you will be doing business stuff (ie. creating an Domain Event) outside of your aggregate and emitting events from two different layers: that's something you don't really want to do, believe me. Then, so long for this solution, let's forget about it and move on.
+Sadly, doing so, you will be doing business stuff (ie. creating an Domain Event) outside of your aggregate: that's something you don't really want to do, believe me. Then, so long for this solution, let's forget about it and move on.
 
 ## The DomainErrorEvent Way
 
@@ -130,7 +130,7 @@ public function handleFooCommand(FooCommand $command)
 }
 {% endhighlight %}
 
-But wait! Are we emitting from two different layers again? Ok, so this was just one more crappy idea after all... You can tell me I could have done it inside the Repository, and yes, I could have done that. But does it really make sense to call a method `save` if you can prevent it to really save the passed object? Yeah, that's what I thought.
+But wait! Are we emitting business events issued from the same business object from two different layers? You can't do that, that makes no sense. OK, so this was just one more crappy idea after all... You can tell me I could have done it inside the Repository, and yes, I could have done that. But does it really make sense to call a method `save` if you can prevent it to really save the passed object? Yeah, that's what I thought.
 
 So, what's the big deal about emitting (and saving) error events just like any other event? Do we even need to separate error events from *regular* events? Does it make sense? After those two failures trying to avoid the inevitable, I'm not that certain anymore.
 
