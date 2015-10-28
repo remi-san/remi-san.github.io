@@ -21,3 +21,6 @@ google_analytics: UA-69261990-1
 markdown: kramdown
 
 permalink:   /:title.html
+
+gems:
+  - jekyll-sitemap
